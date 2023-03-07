@@ -49,3 +49,29 @@ listItems.forEach((item) => {
     }
   });
 });
+
+// DOM example
+
+const init = function () {
+  const injectionElement = document.createElement("div");
+  injectionElement.setAttribute("id", "injection_element");
+  injectionElement.innerText = "Injection Element";
+  document.body.appendChild(injectionElement);
+
+  const hostElement = document.createElement("div");
+  hostElement.setAttribute("id", "injection_host");
+  hostElement.innerText = "Injection Host";
+  document.body.appendChild(hostElement);
+
+  // Using Shadow Root
+  var host = document.querySelector("#injection_host");
+  var root = host.attachShadow({ mode: open }); // Create Shadow Root
+  var div = document.createElement("div");
+  div.setAttribute("id", "div_root");
+  div.innerHTML = `
+    Hello From the Shadow Root Element
+  `;
+  root.appendChild(div);
+};
+
+init();
