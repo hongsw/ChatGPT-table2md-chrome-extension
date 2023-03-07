@@ -1,0 +1,9 @@
+#btn-show-list {
+  background-color: white;
+  width: "40px";
+  height: "20px";
+}
+
+#list_container {
+  display: "none";
+}
