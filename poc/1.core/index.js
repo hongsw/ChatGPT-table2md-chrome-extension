@@ -1,5 +1,5 @@
-const convertHtmlToMd = (doc, sort = 'left') => {
-  const table = doc.getElementsByTagName('table')[0];
+const convertHtmlToMd = (sort = 'left') => {
+  const table = document.getElementsByTagName('table')[0];
   const tr = table.getElementsByTagName('tr');
 
   // Table header
@@ -31,9 +31,19 @@ const convertHtmlToMd = (doc, sort = 'left') => {
     rows += `${row}\n`;
   }
 
+  saveTheMdToClipboard(`${header}\n${separator}\n${rows}`);
+
   return `${header}\n${separator}\n${rows}`;
 };
 
-const doc = document;
-const md = convertHtmlToMd(doc);
-console.log(md);
+const saveTheMdToClipboard = async (text) => {
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch (err) {
+    console.error('Failed to copy!', err);
+  }
+};
+
+document
+  .getElementsByTagName('button')[0]
+  .addEventListener('click', convertHtmlToMd.bind(document, 'left'));
