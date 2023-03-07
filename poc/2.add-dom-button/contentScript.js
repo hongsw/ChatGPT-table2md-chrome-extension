@@ -68,9 +68,7 @@ const init = function () {
   var root = host.attachShadow({ mode: open }); // Create Shadow Root
   var div = document.createElement("div");
   div.setAttribute("id", "div_root");
-  div.innerHTML = `
-    Hello From the Shadow Root Element
-  `;
+  div.innerHTML = ` Hello From the Shadow Root Element`;
   root.appendChild(div);
 };
 
