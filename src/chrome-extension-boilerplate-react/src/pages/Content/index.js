@@ -2,6 +2,7 @@ const init = () => {
   const table = document.querySelectorAll('table');
   console.log('table 찾기');
   table.forEach((table, idx) => {
+    if (document.getElementById(`table_${idx}`)) return;
     table.setAttribute('class', 'border-2 border-black');
     table.setAttribute('id', `table_${idx}`);
 
