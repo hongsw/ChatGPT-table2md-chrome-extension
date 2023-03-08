@@ -1,6 +1,5 @@
 const init = () => {
   const table = document.querySelectorAll('table');
-  console.log('table 찾기');
   table.forEach((table, idx) => {
     if (document.getElementById(`table_${idx}`)) return;
     table.setAttribute('id', `table_${idx}`);
@@ -37,7 +36,6 @@ const targetNode = document.querySelector('main > div > div > div ');
 const observer = new MutationObserver(function (mutations) {
   mutations.forEach(function (mutation) {
     // 새로운 노드가 추가되었을 때 처리할 내용 작성
-    console.log(mutation);
     if (mutation.previousSibling?.nodeName === 'THEAD') {
       init();
     }
