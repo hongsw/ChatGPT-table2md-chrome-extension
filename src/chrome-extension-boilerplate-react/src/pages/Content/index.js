@@ -3,7 +3,6 @@ const init = () => {
   console.log('table 찾기');
   table.forEach((table, idx) => {
     if (document.getElementById(`table_${idx}`)) return;
-    table.setAttribute('class', 'border-2 border-black');
     table.setAttribute('id', `table_${idx}`);
 
     // 각 테이블 마다 버튼 생성
@@ -32,13 +31,14 @@ const init = () => {
 };
 
 // 변화 감지 대상 요소 선택
-const targetNode = document.querySelector('main > div > div > div > div ');
+const targetNode = document.querySelector('main > div > div > div ');
 
 // MutationObserver 생성
 const observer = new MutationObserver(function (mutations) {
   mutations.forEach(function (mutation) {
     // 새로운 노드가 추가되었을 때 처리할 내용 작성
-    if (mutation.previousSibling?.nodeName === 'TABLE') {
+    console.log(mutation);
+    if (mutation.previousSibling?.nodeName === 'THEAD') {
       init();
     }
   });
