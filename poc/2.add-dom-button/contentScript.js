@@ -1,75 +1,30 @@
-const btnShowList = document.createElement("button");
-btnShowList.setAttribute("id", "btn-show-list");
-btnShowList.innerText = "Show Button";
+// table 요소 선택
+const table = document.querySelectorAll("table");
 
-const listContainer = document.createElement("ul");
-listContainer.setAttribute("id", "list_container");
-document.body.appendChild(btnShowList);
-document.body.appendChild(listContainer);
+table.forEach((table, idx) => {
+  table.setAttribute("class", "border-2 border-black");
+  table.setAttribute("id", `table_${idx}`);
 
-const items = ["Download PDF", "Download PNG", "Export md", "Share Link"];
+  // 각 테이블 마다 버튼 생성
+  const CopyButton = document.createElement("button");
+  CopyButton.setAttribute("id", `table_copy_button_${idx}`);
+  CopyButton.setAttribute("class", "border-2 border-black ml-[428px]");
+  CopyButton.innerText = "copy";
 
-const list = document.createElement("ul");
+  // div 요소 생성 및 속성 설정
+  const div = document.createElement("div");
+  div.classList.add("table-wrapper");
+  div.setAttribute("class", "flex-row w-full");
 
-for (let i = 0; i < items.length; i++) {
-  const item = document.createElement("li");
-  const item_button = document.createElement("button");
-  item_button.innerText = items[i];
-  item.appendChild(item_button);
-  list.appendChild(item);
-}
+  // div 부모 요소에 버튼 추가
+  div.appendChild(CopyButton);
 
-listContainer.appendChild(list);
+  // table 요소를 div 요소로 감싸기
+  table.parentNode.insertBefore(div, table);
+  div.appendChild(table);
 
-btnShowList.addEventListener("click", () => {
-  if (list.style.display === "none") {
-    list.style.display = "block";
-  } else {
-    list.style.display = "none";
-  }
-});
-
-const listItems = document.querySelectorAll("#list_container li");
-
-listItems.forEach((item) => {
-  item.addEventListener("click", () => {
-    switch (item.innerText) {
-      case "Download PDF":
-        console.log("PDF");
-        break;
-      case "Download PNG":
-        console.log("PNG");
-        break;
-      case "Export md":
-        console.log("Export md");
-        break;
-      case "Share Link":
-        console.log("Share Link");
-        break;
-    }
+  // Copy Button Event
+  CopyButton.addEventListener("click", () => {
+    console.log(table.innerHTML);
   });
 });
-
-// DOM example
-
-const init = function () {
-  const injectionElement = document.createElement("div");
-  injectionElement.setAttribute("id", "injection_element");
-  injectionElement.innerText = "Injection Element";
-  document.body.appendChild(injectionElement);
-
-  const hostElement = document.createElement("div");
-  hostElement.setAttribute("id", "injection_host");
-  hostElement.innerText = "Injection Host";
-  document.body.appendChild(hostElement);
-
-  // Using Shadow Root
-  var host = document.querySelector("#injection_host");
-  var root = host.attachShadow({ mode: open }); // Create Shadow Root
-  var div = document.createElement("div");
-  div.setAttribute("id", "div_root");
-  div.innerHTML = ` Hello From the Shadow Root Element`;
-  root.appendChild(div);
-};
-
-init();
