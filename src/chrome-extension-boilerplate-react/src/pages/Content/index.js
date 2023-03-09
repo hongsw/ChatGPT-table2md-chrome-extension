@@ -83,7 +83,7 @@ const targetNode = document.querySelector('main > div > div > div ');
 const observer = new MutationObserver(function (mutations) {
   mutations.forEach(function (mutation) {
     // 새로운 노드가 추가되었을 때 처리할 내용 작성
-    if (mutation.previousSibling?.nodeName === 'THEAD') {
+    if (mutation?.type === 'childList') {
       init();
     }
   });
