@@ -1,3 +1,15 @@
+const copyBtnDefaultText = 'Copy table';
+const copyBtnDefaultStyle =
+  'border border-black text-xs p-1 px-2 mb-3 rounded font-semibold hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200';
+
+const copyCompleteNotification = (idx) => {
+  const targetBtn = document.getElementById(`table_copy_button_${idx}`);
+  targetBtn.innerHTML = `<div style="display: flex; justify-content: center; align-items: center;"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2Zm3.22 6.97-4.47 4.47-1.97-1.97a.75.75 0 0 0-1.06 1.06l2.5 2.5a.75.75 0 0 0 1.06 0l5-5a.75.75 0 1 0-1.06-1.06Z" fill="#2ECC70"/></svg> <span style="margin-left: 5px;">copy completed!</span></div>`;
+  setTimeout(() => {
+    targetBtn.innerHTML = copyBtnDefaultText;
+  }, 3000);
+};
+
 const saveTheMdToClipboard = async (text) => {
   try {
     await navigator.clipboard.writeText(text);
@@ -51,11 +63,8 @@ const init = () => {
     // 각 테이블 마다 버튼 생성
     const copyButton = document.createElement('button');
     copyButton.setAttribute('id', `table_copy_button_${idx}`);
-    copyButton.setAttribute(
-      'class',
-      'border border-black text-xs p-0.5 px-1 mb-1 rounded font-semibold hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200'
-    );
-    copyButton.innerText = 'copy table';
+    copyButton.setAttribute('class', `${copyBtnDefaultStyle}`);
+    copyButton.innerText = copyBtnDefaultText;
 
     // div 요소 생성 및 속성 설정
     const div = document.createElement('div');
@@ -71,6 +80,7 @@ const init = () => {
 
     // Copy Button Event
     copyButton.addEventListener('click', () => {
+      copyCompleteNotification(idx);
       convertHtmlToMd(table);
     });
   });
