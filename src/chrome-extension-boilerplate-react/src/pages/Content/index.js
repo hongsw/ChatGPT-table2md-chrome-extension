@@ -2,23 +2,32 @@ const copyBtnDefaultText = 'Copy table';
 const copyBtnDefaultStyle =
   'border border-black text-xs p-1 px-2 mb-3 rounded font-semibold hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200';
 
-const copyCompleteNotification = (idx) => {
-  const targetBtn = document.getElementById(`table_copy_button_${idx}`);
+const copyCompleteNotification = (targetIdx, state = true) => {
+  const targetBtn = document.getElementById(`table_copy_button_${targetIdx}`);
+  if (!state) {
+    targetBtn.innerHTML = `<div style="display: flex; justify-content: center; align-items: center;"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2Zm3.53 6.47-.084-.073a.75.75 0 0 0-.882-.007l-.094.08L12 10.939l-2.47-2.47-.084-.072a.75.75 0 0 0-.882-.007l-.094.08-.073.084a.75.75 0 0 0-.007.882l.08.094L10.939 12l-2.47 2.47-.072.084a.75.75 0 0 0-.007.882l.08.094.084.073a.75.75 0 0 0 .882.007l.094-.08L12 13.061l2.47 2.47.084.072a.75.75 0 0 0 .882.007l.094-.08.073-.084a.75.75 0 0 0 .007-.882l-.08-.094L13.061 12l2.47-2.47.072-.084a.75.75 0 0 0 .007-.882l-.08-.094-.084-.073.084.073Z" fill="#E84B3C"/></svg> <span style="margin-left: 5px;">copy failed</span></div>`;
+    setTimeout(() => {
+      targetBtn.innerHTML = copyBtnDefaultText;
+    }, 1500);
+    return;
+  }
   targetBtn.innerHTML = `<div style="display: flex; justify-content: center; align-items: center;"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2Zm3.22 6.97-4.47 4.47-1.97-1.97a.75.75 0 0 0-1.06 1.06l2.5 2.5a.75.75 0 0 0 1.06 0l5-5a.75.75 0 1 0-1.06-1.06Z" fill="#2ECC70"/></svg> <span style="margin-left: 5px;">copy completed!</span></div>`;
   setTimeout(() => {
     targetBtn.innerHTML = copyBtnDefaultText;
-  }, 3000);
+  }, 1500);
 };
 
-const saveTheMdToClipboard = async (text) => {
+const saveTheMdToClipboard = async (text, targetIdx) => {
   try {
     await navigator.clipboard.writeText(text);
+    copyCompleteNotification(targetIdx);
   } catch (err) {
+    copyCompleteNotification(targetIdx, false);
     console.error('Failed to copy!', err);
   }
 };
 
-const convertHtmlToMd = (table, sort = 'left') => {
+const convertHtmlToMd = (table, targetIdx, sort = 'left') => {
   const tr = table.getElementsByTagName('tr');
   // Table header
   let header = '|';
@@ -49,7 +58,7 @@ const convertHtmlToMd = (table, sort = 'left') => {
     rows += `${row}\n`;
   }
 
-  saveTheMdToClipboard(`${header}\n${separator}\n${rows}`);
+  saveTheMdToClipboard(`${header}\n${separator}\n${rows}`, targetIdx);
 
   return;
 };
@@ -80,8 +89,7 @@ const init = () => {
 
     // Copy Button Event
     copyButton.addEventListener('click', () => {
-      copyCompleteNotification(idx);
-      convertHtmlToMd(table);
+      convertHtmlToMd(table, idx);
     });
   });
 };
