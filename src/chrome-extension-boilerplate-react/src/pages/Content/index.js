@@ -64,34 +64,40 @@ const convertHtmlToMd = (table, targetIdx, sort = 'left') => {
 };
 
 const init = () => {
-  const table = document.querySelectorAll('table');
-  table.forEach((table, idx) => {
-    if (document.getElementById(`table_${idx}`)) return;
-    table.setAttribute('id', `table_${idx}`);
-    table.setAttribute('class', 'm-0');
-    // 각 테이블 마다 버튼 생성
-    const copyButton = document.createElement('button');
-    copyButton.setAttribute('id', `table_copy_button_${idx}`);
-    copyButton.setAttribute('class', `${copyBtnDefaultStyle}`);
-    copyButton.innerText = copyBtnDefaultText;
 
-    // div 요소 생성 및 속성 설정
-    const div = document.createElement('div');
-    div.classList.add('table-wrapper');
-    div.setAttribute('class', 'w-full flex flex-col relative items-end mt-5');
+  // 3초마다 반복해서 실행하면 되지만, 페이지에 부하를 주는 방법이라서 개선이 피룡
+  setInterval(function() {
+    const table = document.querySelectorAll('table');
+    table.forEach((table, idx) => {
+      if (document.getElementById(`table_${idx}`)) return;
+      table.setAttribute('id', `table_${idx}`);
+      table.setAttribute('class', 'm-0');
+      // 각 테이블 마다 버튼 생성
+      const copyButton = document.createElement('button');
+      copyButton.setAttribute('id', `table_copy_button_${idx}`);
+      copyButton.setAttribute('class', `${copyBtnDefaultStyle}`);
+      copyButton.innerText = copyBtnDefaultText;
 
-    // div 부모 요소에 버튼 추가
-    div.appendChild(copyButton);
+      // div 요소 생성 및 속성 설정
+      const div = document.createElement('div');
+      div.classList.add('table-wrapper');
+      div.setAttribute('class', 'w-full flex flex-col relative items-end mt-5');
 
-    // table 요소를 div 요소로 감싸기
-    table.parentNode.insertBefore(div, table);
-    div.appendChild(table);
+      // div 부모 요소에 버튼 추가
+      div.appendChild(copyButton);
 
-    // Copy Button Event
-    copyButton.addEventListener('click', () => {
-      convertHtmlToMd(table, idx);
+      // table 요소를 div 요소로 감싸기
+      table.parentNode.insertBefore(div, table);
+      div.appendChild(table);
+
+      // Copy Button Event
+      copyButton.addEventListener('click', () => {
+        convertHtmlToMd(table, idx);
+      });
     });
-  });
+
+  }, 3000); // 3000ms (3초) 후에 실행
+
 };
 
 // 변화 감지 대상 요소 선택
