@@ -1,11 +1,11 @@
 {
-  "name": "chrome-extension-boilerplate-react",
-  "version": "5.0.4",
-  "description": "A chrome extension boilerplate built with React 18, Webpack 5, and Webpack Dev Server 4",
+  "name": "chatgpt-table-mate",
+  "version": "0.0.5",
+  "description": "A Chrome extension to easily copy the table part of a ChatGPT response into markdown syntax and images",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lxieyang/chrome-extension-boilerplate-react.git"
+    "url": "https://github.com/hongsw/ChatGPT-table2md-chrome-extension.git"
   },
   "scripts": {
     "build": "node utils/build.js",
