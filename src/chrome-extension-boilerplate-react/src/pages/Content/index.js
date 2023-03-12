@@ -95,7 +95,7 @@ const init = () => {
 };
 
 // 변화 감지 대상 요소 선택
-const targetNode = document.querySelector('main > div > div > div ');
+const targetNode = document.querySelector('body');
 
 // MutationObserver 생성
 const observer = new MutationObserver(function (mutations) {
