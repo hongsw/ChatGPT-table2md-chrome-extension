@@ -1,27 +1,28 @@
 {
   "manifest_version": 3,
-  "name": "Chrome Extension with React & Webpack",
-  "description": "A chrome extension boilerplate built with React 17, Webpack 5, and Webpack Dev Server 4",
-  "options_page": "options.html",
-  "background": { "service_worker": "background.bundle.js" },
+  "version": "0.0.5",
+  "name": "ChatGPT Table-Mate",
+  "description": "A Chrome extension to easily copy the table part of a ChatGPT response into markdown syntax and images",
   "action": {
     "default_popup": "popup.html",
-    "default_icon": "icon-34.png"
+    "default_icon": "icon.png"
   },
+
+  "web_accessible_resources": [
+    {
+      "resources": ["gtm.js", "content.styles.css", "icon.png", "icon.png"],
+      "matches": []
+    }
+  ],
+  "permissions": ["tabGroups", "notifications"],
   "icons": {
-    "128": "icon-128.png"
+    "128": "icon.png"
   },
   "content_scripts": [
     {
       "matches": ["https://chat.openai.com/*"],
       "js": ["contentScript.bundle.js"],
       "css": ["content.styles.css"]
-    }
-  ],
-  "web_accessible_resources": [
-    {
-      "resources": ["content.styles.css", "icon-128.png", "icon-34.png"],
-      "matches": []
     }
   ]
 }
