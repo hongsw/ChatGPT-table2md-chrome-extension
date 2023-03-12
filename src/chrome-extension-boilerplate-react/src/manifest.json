@@ -10,7 +10,7 @@
 
   "web_accessible_resources": [
     {
-      "resources": ["gtm.js", "content.styles.css", "icon.png", "icon.png"],
+      "resources": ["content.styles.css", "icon.png", "icon.png"],
       "matches": []
     }
   ],
