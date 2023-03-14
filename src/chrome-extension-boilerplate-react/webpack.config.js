@@ -179,14 +179,13 @@ var options = {
         },
       ],
     }),
-   
+
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src', 'pages', 'Popup', 'index.html'),
       filename: 'popup.html',
       chunks: ['popup'],
       cache: false,
     }),
-    
   ].filter(Boolean),
   infrastructureLogging: {
     level: 'info',

@@ -1,6 +1,5 @@
 import React from 'react';
 import logo from '../../assets/img/logo.svg';
-import Greetings from '../../containers/Greetings/Greetings';
 import './Popup.css';
 
 const Popup = () => {
@@ -17,7 +16,7 @@ const Popup = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React!
+          hi
         </a>
       </header>
     </div>
