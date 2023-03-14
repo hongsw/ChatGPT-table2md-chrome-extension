@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import MyButton from '../../components/MyButton';
+import { StContent, StHeader, StProgressbar, StToast } from './Popup.style';
 
 const link = 'https://chat.openai.com/chat';
 const defaultText = 'Share with a friends!';
-const completed = 'Copy completed! Please share the link.';
+const completed = `Copied share link! Please share the link.`;
 
 const Popup = () => {
   const [isCopied, setIsCopied] = useState(false);
@@ -39,19 +41,19 @@ const Popup = () => {
 
   return (
     <div className="App">
-      <header className="title">
+      <StHeader>
         <h1>chatGPTable</h1>
         <p>
           Convert an HTML table <br /> received through chatGPT to markdown
         </p>
-      </header>
-      <p>Did you like our service?</p>
-      <button onClick={handleShareLink}>{defaultText}</button>
+      </StHeader>
+      <StContent>Did you like our service?</StContent>
+      <MyButton text={defaultText} onClick={handleShareLink} />
       {isCopied && (
-        <div className="toast">
+        <StToast>
           <p>{completed}</p>
-          <div className="progress-bar" style={{ width: `${progress}%` }} />
-        </div>
+          <StProgressbar style={{ width: `${progress}%` }} />
+        </StToast>
       )}
     </div>
   );
