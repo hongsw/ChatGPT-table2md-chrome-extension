@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import MyButton from '../../components/MyButton';
 import { StContent, StHeader, StProgressbar, StToast } from './Popup.style';
 
-const link = 'https://chat.openai.com/chat';
+const link = 'https://Chatgptable.xideprojext.xyz';
 const defaultText = 'Share with a friends!';
 const completed = `Copied share link! Please share the link.`;
 
