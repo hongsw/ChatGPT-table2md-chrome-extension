@@ -42,9 +42,13 @@ const Popup = () => {
   return (
     <div className="App">
       <StHeader>
-        <h1>chatGPTable</h1>
+        <h1>ChatGPTable</h1>
         <p>
-          Convert an HTML table <br /> received through chatGPT to markdown
+          <strong>Convert an HTML table</strong> <br /> received through ChatGPT
+          <strong> to Markdown,</strong>
+          <br /> Save it to the <strong>Clipboard</strong>,
+          <br />
+          and then <strong>Copy and Paste</strong> it.
         </p>
       </StHeader>
       <StContent>Did you like our service?</StContent>
