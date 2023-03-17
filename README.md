@@ -1,4 +1,7 @@
-# ChatGPT-table2md-chrome-extension
+# ChatGPTable
+## ChatGPT-table2md-chrome-extension
+
+
 
 ## inspired by 
 https://github.com/it9gamelog/chatgpt-screenshot-ex
