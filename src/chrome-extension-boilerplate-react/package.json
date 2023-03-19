@@ -1,6 +1,6 @@
 {
   "name": "chatgpt-table-mate",
-  "version": "0.0.5",
+  "version": "0.1.8",
   "description": "A Chrome extension to easily copy the table part of a ChatGPT response into markdown syntax and images",
   "license": "MIT",
   "repository": {

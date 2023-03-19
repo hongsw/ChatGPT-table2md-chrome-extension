@@ -1,20 +1,18 @@
 {
   "manifest_version": 3,
-  "version": "0.0.5",
-  "name": "ChatGPT Table-Mate",
+  "version": "0.1.8",
+  "name": "ChatGPTable",
   "description": "A Chrome extension to easily copy the table part of a ChatGPT response into markdown syntax and images",
   "action": {
-    "default_popup": "popup.html",
     "default_icon": "icon.png"
   },
-
   "web_accessible_resources": [
     {
-      "resources": ["content.styles.css", "icon.png", "icon.png"],
+      "resources": ["content.styles.css", "icon.png"],
       "matches": []
     }
   ],
-  "permissions": ["tabGroups", "notifications"],
+  "permissions": [],
   "icons": {
     "128": "icon.png"
   },
